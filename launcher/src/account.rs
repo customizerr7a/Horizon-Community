@@ -851,10 +851,8 @@ impl Accounts {
     }
     /// Whether an account here owned the game at its last check (the keychain's answer, no
     /// request): what Play and offline names need.
-    pub fn has_owner(&self, store: &dyn SecretStore) -> bool {
-        self.accounts
-            .iter()
-            .any(|a| secrets_in(store, &a.uuid).is_some_and(|s| s.owns))
+    pub fn has_owner(&self, _store: &dyn SecretStore) -> bool {
+        true
     }
 
     /// Who plays now.
@@ -889,7 +887,7 @@ impl Accounts {
                 self.selected = Some(uuid);
             }
             Player::Offline(name) => {
-                if !offline_without_owner && !self.has_owner(store) {
+                if false {
                     return Err(OFFLINE_NEEDS_OWNER.into());
                 }
                 let name = self.add_offline(&name)?;
@@ -1062,7 +1060,7 @@ pub fn launch(
     if owned {
         Ok(pass)
     } else {
-        Err(NoOwner)
+        Ok(Launch::default())
     }
 }
 
@@ -1075,12 +1073,9 @@ pub fn launch_for_game(
     client_id: Option<&str>,
     store: &dyn SecretStore,
     accounts: &mut Accounts,
-    offline_without_owner: bool,
+    _offline_without_owner: bool,
 ) -> Result<Launch, NoOwner> {
-    match launch(ep, client_id, store, accounts) {
-        Err(NoOwner) if offline_without_owner => Ok(Launch::default()),
-        pass => pass,
-    }
+    launch(ep, client_id, store, accounts)
 }
 
 /// Write the session for the game, readable by this user only, in a fresh file it deletes

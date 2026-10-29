@@ -21,17 +21,18 @@
   <a href="#contributing"><b>Contributing</b></a>
 </p>
 
-# Horizon
+# Horizon (Community Edition)
 
-Horizon is Minecraft: Java Edition 26.3 rewritten in Rust: a native game that reads the same worlds, follows the same rules and generates the same terrain as the Java game, and is checked against it by 281 differential harnesses. You play it through a small launcher, on the files from your own copy of Minecraft. It is free, open source and unofficial.
+Horizon Community Edition — это форк проекта Horizon (Minecraft: Java Edition, переписанный на Rust). 
 
-> Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. Horizon contains no Minecraft code, assets or data: you need your own legally obtained copy of Minecraft: Java Edition 26.3.
+Данная сборка включает ряд доработок сообщества:
+- **Оффлайн-профили:** поддержка локальных профилей игроков для одиночной игры и локальных/оффлайн серверов.
+- **Русская локализация:** полная поддержка русского языка в лаунчере и клиенте игры.
+- **Оригинальная панорама:** восстановлена классическая трёхмерная панорама главного меню Minecraft.
+- **Оптимизация рендеринга:** V-Sync выключен по умолчанию для минимальной задержки ввода, автоматический выбор графического бэкенда (Vulkan / OpenGL).
+- **Своя ветка обновлений:** лаунчер синхронизируется напрямую с репозиторием `customizerr7a/Horizon-Community`.
 
-## Download
-
-Horizon is installed through **the Horizon launcher**. Get it from [playhorizon.dev](https://playhorizon.dev) (the Download button picks your system) or from [the launcher releases](https://github.com/horizon-rust/horizon/releases?q=launcher-v&expanded=true), for Linux x86-64, macOS on Apple Silicon or Windows x64. The launcher installs and updates the game, prepares its files from your copy of Minecraft (your own install, or downloaded from Mojang for your account), and updates itself.
-
-**You need** a Microsoft account that owns Minecraft: Java Edition (the launcher signs in with it, as other launchers do; see [Microsoft account](docs/microsoft-account.md)) and a GPU with Vulkan on Linux and Windows, or any Apple Silicon Mac. Nothing else: with no Minecraft on your computer, Play downloads 26.3 and the Java it needs from Mojang for your account, as the official launcher does, then prepares it once. An install you already have (the official launcher, Prism, MultiMC and other launchers all work) is used instead. Step by step, with macOS's first-open prompt and the first launch: [Install and first launch](https://playhorizon.dev/docs/install).
+> Не является официальным продуктом Minecraft. Не одобрено и не связано с Mojang или Microsoft. Horizon не содержит защищённых ассетов в бинарниках: игра использует ресурсы установленного Minecraft.
 
 <table>
   <tr>

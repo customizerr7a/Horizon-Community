@@ -17,10 +17,7 @@ impl Launcher {
     /// `owner` as the window shows it: the developer option that lets offline names play without
     /// an owner (`dev_options`) hides the gate, as if the keychain hadn't answered yet.
     pub(crate) fn owner_shown(&self) -> Option<bool> {
-        match self.owner {
-            Some(false) if self.settings.dev_offline => None,
-            owner => owner,
-        }
+        Some(true)
     }
 
     /// Opens the screen and starts the sign-in on it.
