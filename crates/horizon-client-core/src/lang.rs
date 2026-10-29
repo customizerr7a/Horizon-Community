@@ -60,12 +60,16 @@ impl ResourceSource for Bundled {
             "assets/horizon/lang/ru_ru.json" => {
                 include_str!("../../horizon-client/assets/horizon/lang/ru_ru.json")
             }
+            "assets/minecraft/lang/ru_ru.json" => {
+                include_str!("../../horizon-client/assets/horizon/lang/minecraft_ru_ru.json")
+            }
             _ => return None,
         };
         Some(body.as_bytes().to_vec())
     }
     fn namespaces(&self) -> Vec<String> {
-        vec!["horizon".into()]
+        vec!["horizon".into(), "minecraft".into()]
+    }
     }
 }
 impl ResourceSource for std::path::PathBuf {

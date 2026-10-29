@@ -5057,6 +5057,9 @@ impl Game<'_> {
         if self.with_hand(hand, |g| g.remote_use_book(&held)) {
             return true;
         }
+        if &*held.item == "minecraft:firework_rocket" {
+            self.boost_firework(&held);
+        }
         self.with_hand(hand, |g| g.remote_start_held_use(&held));
         item_has_use(&info)
     }
@@ -6412,10 +6415,9 @@ fn item_has_use(info: &horizon_client::items::ItemInfo) -> bool {
                 | "writable_book"
                 | "written_book"
                 | "goat_horn"
-                | "bundle"
-                | "brush"
                 | "carrot_on_a_stick"
                 | "warped_fungus_on_a_stick"
+                | "firework_rocket"
         )
 }
 
