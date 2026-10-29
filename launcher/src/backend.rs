@@ -242,10 +242,16 @@ pub fn compare_versions(a: &str, b: &str) -> std::cmp::Ordering {
     release_order(a).cmp(&release_order(b))
 }
 
-/// Every published release of the repository, both kinds, as GitHub's JSON.
+/// Every published release of the repository: checks fork first, falls back to upstream.
 fn release_list() -> Result<serde_json::Value, String> {
     let url = format!("https://api.github.com/repos/{REPO}/releases?per_page=100");
-    get(&url)?.into_json().map_err(|e| e.to_string())
+    if let Ok(res) = get(&url).and_then(|r| r.into_json::<serde_json::Value>().map_err(|e| e.to_string())) {
+        if res.as_array().is_some_and(|arr| !arr.is_empty()) {
+            return Ok(res);
+        }
+    }
+    let upstream_url = "https://api.github.com/repos/horizon-rust/horizon/releases?per_page=100";
+    get(upstream_url)?.into_json().map_err(|e| e.to_string())
 }
 
 /// The releases in `list` whose tag passes `keep`, newest first, with the asset named `asset`.
